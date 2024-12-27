@@ -1,33 +1,34 @@
 class TasksController < ApplicationController
   allow_unauthenticated_access
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_list
+  before_action :set_task, only: %i[ show edit update destroy toggle_complete ]
 
-  # GET /tasks or /tasks.json
+  # GET /lists/:list_id/tasks or /lists/:list_id/tasks.json
   def index
-    @tasks = Task.all
+    @tasks = @list.tasks
   end
 
-  # GET /tasks/1 or /tasks/1.json
+  # GET /lists/:list_id/tasks/1 or /lists/:list_id/tasks/1.json
   def show
   end
 
-  # GET /tasks/new
+  # GET /lists/:list_id/tasks/new
   def new
-    @task = Task.new
+    @task = @list.tasks.build
   end
 
-  # GET /tasks/1/edit
+  # GET /lists/:list_id/tasks/1/edit
   def edit
   end
 
-  # POST /tasks or /tasks.json
+  # POST /lists/:list_id/tasks or /lists/:list_id/tasks.json
   def create
-    @task = Task.new(task_params)
+    @task = @list.tasks.build(task_params)
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: "Task was successfully created." }
-        format.json { render :show, status: :created, location: @task }
+        format.html { redirect_to [@list, @task], notice: "Task was successfully created." }
+        format.json { render :show, status: :created, location: [@list, @task] }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -35,12 +36,14 @@ class TasksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tasks/1 or /tasks/1.json
+
+  
+  # PATCH/PUT /lists/:list_id/tasks/1 or /lists/:list_id/tasks/1.json
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: "Task was successfully updated." }
-        format.json { render :show, status: :ok, location: @task }
+        format.html { redirect_to [@list, @task], notice: "Task was successfully updated." }
+        format.json { render :show, status: :ok, location: [@list, @task] }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -48,24 +51,38 @@ class TasksController < ApplicationController
     end
   end
 
-  # DELETE /tasks/1 or /tasks/1.json
+  # PATCH /lists/:list_id/tasks/1/toggle_complete
+  def toggle_complete
+    @task.update(is_completed: !@task.is_completed)
+  
+    respond_to do |format|
+      format.html { redirect_to list_tasks_path(@list), notice: "Task completion status was successfully toggled." }
+      format.json { render :show, status: :ok, location: [@list, @task] }
+    end
+  end
+
+  # DELETE /lists/:list_id/tasks/1 or /lists/:list_id/tasks/1.json
   def destroy
     @task.destroy!
 
     respond_to do |format|
-      format.html { redirect_to tasks_path, status: :see_other, notice: "Task was successfully destroyed." }
+      format.html { redirect_to list_tasks_path(@list), status: :see_other, notice: "Task was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params.expect(:id))
+    # uso de callbacks para compartilhar informações com os métodos
+    def set_list
+      @list = List.find(params[:list_id])
     end
 
-    # Only allow a list of trusted parameters through.
+    def set_task
+      @task = @list.tasks.find(params[:id])
+    end
+
+    # Apenas permitir uma lista de parâmetros confiáveis através da internet.
     def task_params
-      params.expect(task: [ :name, :is_completed, :list_id ])
+      params.require(:task).permit(:name)
     end
 end
