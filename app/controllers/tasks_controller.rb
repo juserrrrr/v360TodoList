@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   allow_unauthenticated_access
   before_action :set_list
   before_action :set_task, only: %i[ show edit update destroy toggle_complete ]
+  layout 'user_logged_in'
 
   # GET /lists/:list_id/tasks or /lists/:list_id/tasks.json
   def index
