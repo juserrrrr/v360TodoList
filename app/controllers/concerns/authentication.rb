@@ -1,17 +1,20 @@
 module Authentication
   extend ActiveSupport::Concern
 
+  # Esse bloco de código é executado quando o módulo é incluído em um controller
   included do
     before_action :require_authentication
     helper_method :authenticated?
   end
 
+  # Esse bloco de código é executado quando o módulo é extendido em um controller
   class_methods do
     def allow_unauthenticated_access(**options)
       skip_before_action :require_authentication, **options
     end
   end
 
+  # Esse bloco de código é executado quando o módulo é incluído em um controller
   private
     def authenticated?
       resume_session
