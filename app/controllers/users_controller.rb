@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  allow_unauthenticated_access
 
   # GET /users/new
   def new
@@ -24,6 +25,6 @@ class UsersController < ApplicationController
 
     # Apenas permitir uma lista de parâmetros confiáveis através.
     def user_params
-      params.require(:user).permit(:email_address, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email_address, :password, :password_confirmation)
     end
 end
