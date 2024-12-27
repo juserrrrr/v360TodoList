@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_list
+  before_action :authorize_user!
   before_action :set_task, only: %i[ show edit update destroy toggle_complete ]
 
   # GET /lists/:list_id/tasks or /lists/:list_id/tasks.json
@@ -34,7 +35,6 @@ class TasksController < ApplicationController
       end
     end
   end
-
 
   
   # PATCH/PUT /lists/:list_id/tasks/1 or /lists/:list_id/tasks/1.json
@@ -78,6 +78,11 @@ class TasksController < ApplicationController
 
     def set_task
       @task = @list.tasks.find(params[:id])
+    end
+
+    # Verificar se o usuário atual é o criador da lista
+    def authorize_user!
+      redirect_to lists_path, notice: "You are not authorized to access this list." unless @list.user == current_user
     end
 
     # Apenas permitir uma lista de parâmetros confiáveis através da internet.

@@ -1,12 +1,16 @@
 <div class="w-full pl-8">
   <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% if flash[:success] %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% else %>
+      <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
   <% end %>
 
   <% content_for :title, "My Lists" %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Lists</h1>
+    <h1 class="font-bold text-4xl">My lists</h1>
     <%= link_to "New list", new_list_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 

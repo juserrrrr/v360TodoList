@@ -3,8 +3,8 @@ module Authentication
 
   # Esse bloco de código é executado quando o módulo é incluído em um controller
   included do
-    before_action :require_authentication
-    helper_method :authenticated?
+    before_action :require_authentication # Carrega o método require_authentication antes de qualquer ação do controller
+    helper_method :authenticated?, :current_user # Torna os métodos authenticated? e current_user disponíveis para as views
   end
 
   # Esse bloco de código é executado quando o módulo é extendido em um controller
@@ -20,6 +20,11 @@ module Authentication
       resume_session
     end
 
+  private
+    def current_user
+      Current.session&.user
+    end
+    
     def require_authentication
       resume_session || request_authentication
     end
@@ -38,7 +43,7 @@ module Authentication
     end
 
     def after_authentication_url
-      session.delete(:return_to_after_authenticating) || root_url
+      session.delete(:return_to_after_authenticating) || lists_path
     end
 
     def start_new_session_for(user)
@@ -53,3 +58,4 @@ module Authentication
       cookies.delete(:session_id)
     end
 end
+

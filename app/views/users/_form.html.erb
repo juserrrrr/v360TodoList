@@ -1,4 +1,4 @@
-<%= form_with model: @user, local: true do |form| %>
+<%= form_with model: @user, local: true, class: "contents" do |form| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -10,22 +10,28 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :email_address %>
-    <%= form.email_field :email_address, required: true, autofocus: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="my-5">
+    <%= form.text_field :name, required: true, placeholder: "Enter your name", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password, required: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="my-5">
+    <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, required: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="my-5">
+    <%= form.password_field :password, required: true, autocomplete: "new-password", placeholder: "Enter your password", maxlength: 72, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit "Sign up", class: "rounded-lg py-3 px-5 bg-green-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="my-5">
+    <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Confirm your password", maxlength: 72, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
+    <div class="inline">
+      <%= form.submit "Sign up", class: "rounded-lg py-3 px-5 bg-green-600 text-white inline-block font-medium cursor-pointer" %>
+    </div>
+    <div class="mt-4 text-sm text-gray-500 sm:mt-0">
+      <%= link_to "Already have an account? Sign in", new_session_path, class: "text-gray-700 underline" %>
+    </div>
   </div>
 <% end %>

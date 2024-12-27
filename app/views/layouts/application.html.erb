@@ -26,12 +26,16 @@
     <header class="bg-gradient-to-r from-purple-700 via-purple-600 to-purple-700 text-white p-4 text-center relative flex justify-between items-center shadow-lg">
       <h1 class="text-2xl">FocusTask</h1>
       <nav class="relative">
-        <button id="user-menu-button" class="mr-4 flex items-center cursor-pointer focus:outline-none hover:bg-purple-600 p-2 rounded transition duration-300">
-          <span><i class="fas fa-user mr-2"></i> José Pedro <i class="fas fa-chevron-down ml-2"></i></span>
-        </button>
-        <div id="user-menu" class="hidden absolute right-0 mt-2 w-36 bg-white rounded-md shadow-lg py-1 z-20">
-          <%= button_to 'Logout', session_path, method: :delete, class: 'block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-semibold', id: 'logout-link' %>
-        </div>
+        <% if authenticated? %>
+          <button id="user-menu-button" class="mr-4 flex items-center cursor-pointer focus:outline-none hover:bg-purple-600 p-2 rounded transition duration-300">
+            <span><i class="fas fa-user mr-2"></i> <%= current_user.name %> <i class="fas fa-chevron-down ml-2"></i></span>
+          </button>
+          <div id="user-menu" class="hidden absolute right-0 mt-2 w-36 bg-white rounded-md shadow-lg py-1 z-20">
+            <%= button_to 'Logout', session_path, method: :delete, class: 'block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-semibold', id: 'logout-link' %>
+          </div>
+        <% else %>
+          <span>Welcome :)</span>
+        <% end %>
       </nav>
     </header>
     <main class="container mx-auto mt-24 flex">
