@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-  allow_unauthenticated_access
   before_action :set_list
   before_action :set_task, only: %i[ show edit update destroy toggle_complete ]
 

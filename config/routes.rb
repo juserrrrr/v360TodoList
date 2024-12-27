@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resource :session
+  resource :session, only: [:new, :create, :destroy]
   resources :passwords, param: :token
   resources :lists do
     resources :tasks do
@@ -8,5 +8,6 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :users, only: [:new, :create]
   get "up" => "rails/health#show", as: :rails_health_check
 end
