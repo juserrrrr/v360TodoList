@@ -30,7 +30,7 @@
           <span><i class="fas fa-user mr-2"></i> José Pedro <i class="fas fa-chevron-down ml-2"></i></span>
         </button>
         <div id="user-menu" class="hidden absolute right-0 mt-2 w-36 bg-white rounded-md shadow-lg py-1 z-20">
-          <%= link_to 'Logout', lists_path, class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-semibold', id: 'logout-link' %>
+          <%= button_to 'Logout', session_path, method: :delete, class: 'block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-semibold', id: 'logout-link' %>
         </div>
       </nav>
     </header>
