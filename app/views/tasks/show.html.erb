@@ -1,15 +1,13 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+<div class="w-full px-4 sm:px-6 lg:px-8">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
 
-    <%= render @task %>
+  <%= render @task %>
 
-    <%= link_to "Edit this task", edit_list_task_path(@list, @task), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Back to tasks", list_tasks_path(@list), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this task", list_task_path(@list, @task), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
+  <div class="w-full flex flex-col sm:flex-row gap-4">
+    <%= link_to "Edit this task", edit_list_task_path(@list, @task), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium w-full sm:w-auto text-center" %>
+    <%= link_to "Back to tasks", list_tasks_path(@list), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium w-full sm:w-auto text-center" %>
+    <%= button_to "Destroy this task", list_task_path(@list, @task), method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 font-medium w-full sm:w-auto" %>
   </div>
 </div>
