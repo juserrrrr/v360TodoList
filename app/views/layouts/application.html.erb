@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "V360 To Do List" %></title>
+    <title><%= content_for(:title) || "FocusTask" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -25,8 +25,6 @@
 
   <body>
     <main class="container mx-auto mt-28 px-5 flex">
-      <div class="bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 rounded-lg p-5">
-      </div>
       <%= yield %>
     </main>
   </body>
