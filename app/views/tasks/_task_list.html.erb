@@ -1,10 +1,10 @@
 <!-- filepath: /Ubuntu/home/juser/v360TodoList/app/views/tasks/_task_list.html.erb -->
 <ul>
   <% tasks.sort_by { |task| task.is_completed? ? 1 : 0 }.each do |task| %>
-    <li id="<%= dom_id task %>" class="flex items-center my-4 p-4 border rounded-lg <%= task.is_completed? ? 'bg-gray-300' : 'bg-gray-100' %>">
-      <span class="w-full <%= 'line-through text-gray-500' if task.is_completed? %>"><%= task.name %></span>
-      <div class="flex">
-        <%= button_to (task.is_completed? ? "Unconfirm" : "Confirm"), toggle_complete_list_task_path(task.list, task), method: :patch, class: "ml-4", style: "background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;", form: { data: { turbo_frame: "task_#{task.id}" } } %>
+    <li id="<%= dom_id task %>" class="flex flex-col md:flex-row items-center my-4 p-4 border rounded-lg <%= task.is_completed? ? 'bg-gray-300' : 'bg-gray-100' %>">
+      <span class="w-full break-words <%= 'line-through text-gray-500' if task.is_completed? %>"><%= task.name %></span>
+      <div class="flex mt-4 md:mt-0">
+        <%= button_to (task.is_completed? ? "Unconfirm" : "Confirm"), toggle_complete_list_task_path(task.list, task), method: :patch, class: "ml-0 md:ml-4", style: "background-color: blue; color: white; padding: 5px 10px; border: none; border-radius: 5px;", form: { data: { turbo_frame: "task_#{task.id}" } } %>
         <%= link_to "Edit", edit_list_task_path(task.list, task), class: "ml-4", style: "background-color: green; color: white; padding: 5px 10px; border: none; border-radius: 5px;" %>
         <%= button_to "Delete", list_task_path(task.list, task), method: :delete, data: { confirm: "Are you sure?" }, class: "ml-4", style: "background-color: red; color: white; padding: 5px 10px; border: none; border-radius: 5px;" %>
       </div>
