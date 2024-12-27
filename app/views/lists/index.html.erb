@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="w-full pl-8">
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
@@ -10,12 +10,19 @@
     <%= link_to "New list", new_list_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="lists" class="min-w-full">
+  <div id="lists" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
     <% @lists.each do |list| %>
-      <%= render list %>
-      <p>
-        <%= link_to "Show this list", list, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
+      <div class="bg-gray-100 shadow-md rounded-lg p-6">
+        <%= render list %>
+        <div class="flex items-center justify-end mt-4">
+          <p>
+            <%= link_to "Show this list", list, class: "ml-2 rounded-lg py-3 px-5 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 inline-block font-medium" %>
+          </p>
+          <p>
+            <%= link_to "Tasks", list_tasks_path(list), class: "ml-2 rounded-lg py-3 px-5 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 inline-block font-medium" %>
+          </p>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

@@ -1,17 +1,15 @@
 <div id="<%= dom_id task %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
+    <strong class="block font-medium mb-1">Task:</strong>
     <%= task.name %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Is completed:</strong>
-    <%= task.is_completed %>
+  <p class="my-5 flex items-center">
+    <strong class="block font-medium mr-2">Completed:</strong>
+    <% if task.is_completed %>
+      <span class="icon-completed">✔️</span>
+    <% else %>
+      <span class="icon-not-completed">❌</span>
+    <% end %>
   </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">List:</strong>
-    <%= task.list_id %>
-  </p>
-
 </div>

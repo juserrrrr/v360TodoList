@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_27_145812) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_27_155654) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -30,8 +30,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_27_145812) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.text "name"
-    t.boolean "is_completed"
+    t.string "name"
+    t.boolean "is_completed", default: false
     t.bigint "list_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
