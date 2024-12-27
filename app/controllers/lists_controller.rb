@@ -1,7 +1,6 @@
 class ListsController < ApplicationController
   allow_unauthenticated_access
   before_action :set_list, only: %i[ show edit update destroy ]
-  layout 'user_logged_in'
 
   # GET /lists or /lists.json
   def index
