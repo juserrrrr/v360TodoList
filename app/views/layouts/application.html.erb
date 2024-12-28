@@ -24,7 +24,9 @@
 
   <body>
     <header class="bg-gradient-to-r from-purple-700 via-purple-600 to-purple-700 text-white p-4 text-center relative flex justify-between items-center shadow-lg">
-      <h1 class="text-xl md:text-2xl">FocusTask</h1>
+      <h1 class="text-xl md:text-2xl">
+        <a href="<%= lists_path %>">FocusTask</a>
+      </h1>
       <nav class="relative">
         <% if authenticated? %>
           <button id="user-menu-button" class="flex items-center cursor-pointer focus:outline-none hover:bg-purple-600 p-2 rounded transition duration-300">

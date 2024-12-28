@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   allow_unauthenticated_access
+  redirect_authenticated_user
 
   # GET /users/new
   def new

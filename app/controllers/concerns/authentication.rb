@@ -12,6 +12,10 @@ module Authentication
     def allow_unauthenticated_access(**options)
       skip_before_action :require_authentication, **options
     end
+
+    def redirect_authenticated_user(**options)
+      before_action :redirect_authenticated_user, **options
+    end
   end
 
   # Esse bloco de código é executado quando o módulo é incluído em um controller
@@ -24,7 +28,7 @@ module Authentication
     def current_user
       Current.session&.user
     end
-    
+    # Método que verifica se o usuário está autenticado
     def require_authentication
       resume_session || request_authentication
     end
@@ -36,10 +40,14 @@ module Authentication
     def find_session_by_cookie
       Session.find_by(id: cookies.signed[:session_id]) if cookies.signed[:session_id]
     end
-
+    # Método que redireciona o usuário para a página de login
     def request_authentication
       session[:return_to_after_authenticating] = request.url
       redirect_to new_session_path
+    end
+    # Método que redireciona o usuário para a página de listas caso ele esteja autenticado
+    def redirect_authenticated_user
+      redirect_to lists_path if authenticated?
     end
 
     def after_authentication_url
