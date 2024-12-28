@@ -27,6 +27,9 @@ Rails.application.configure do
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   config.assume_ssl = true
 
+  config.action_dispatch.trusted_proxies = ['0.0.0.0/0', '::/0'] # Ou o IP do seu proxy reverso (Traefik ou Caddy)
+  config.action_dispatch.x_forwarded_proto = true
+
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
 
