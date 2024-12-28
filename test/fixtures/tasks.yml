@@ -1,11 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  description: MyText
+  name: Task One
   is_completed: false
   list: one
 
 two:
-  description: MyText
+  name: Task Two
   is_completed: false
+  list: two
+
+three:
+  name: Task Three
+  is_completed: true
+  list: one
+
+four:
+  name: Task Four
+  is_completed: true
   list: two
