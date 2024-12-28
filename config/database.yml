@@ -28,8 +28,10 @@ production:
   primary: &primary_production
     <<: *default
     database: v360_to_do_list_production
-    username: v360_to_do_list
+    username: <%= ENV["V360_TO_DO_LIST_DATABASE_USERNAME"] %>
     password: <%= ENV["V360_TO_DO_LIST_DATABASE_PASSWORD"] %>
+    host: <%= ENV["V360_TO_DO_LIST_DATABASE_HOST"] %>
+    port: <%= ENV["V360_TO_DO_LIST_DATABASE_PORT"] %>
   cache:
     <<: *primary_production
     database: v360_to_do_list_production_cache
