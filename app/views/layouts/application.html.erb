@@ -22,17 +22,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   </head>
 
-  <body>
-    <header class="bg-gradient-to-r from-purple-700 via-purple-600 to-purple-700 text-white p-4 text-center relative flex justify-between items-center shadow-lg">
+  <body class="h-screen overflow-hidden flex flex-col">
+    <header class="w-full h-16 bg-gradient-to-r from-purple-700 via-purple-600 to-purple-700 text-white p-4 text-center fixed top-0 flex justify-between items-center shadow-lg">
       <h1 class="text-xl md:text-2xl">
         <a href="<%= lists_path %>">FocusTask</a>
       </h1>
-      <nav class="relative">
+      <nav>
         <% if authenticated? %>
-          <button id="user-menu-button" class="flex items-center cursor-pointer focus:outline-none hover:bg-purple-600 p-2 rounded transition duration-300">
-            <span><i class="fas fa-user mr-2"></i> <%= current_user.name %> <i class="fas fa-chevron-down ml-2"></i></span>
+          <button id="user-menu-button" class="flex gap-2 items-center cursor-pointer focus:outline-none hover:bg-purple-600 p-2 rounded transition duration-300">
+            <i class="fas fa-user"></i>
+            <span class="max-w-32 md:max-w-48 truncate flex items-center"><%= current_user.name %></span>
+            <i class="fas fa-chevron-down mt-0.5"></i>
           </button>
-          <div id="user-menu" class="hidden absolute right-0 mt-2 w-36 bg-white rounded-md shadow-lg py-1 z-20">
+          <div id="user-menu" class="hidden absolute right-4 mt-2 w-36 bg-white rounded-md shadow-lg py-1 z-20">
             <%= button_to 'Logout', session_path, method: :delete, class: 'block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-semibold', id: 'logout-link' %>
           </div>
         <% else %>
@@ -40,10 +42,12 @@
         <% end %>
       </nav>
     </header>
-    <main class="container mx-auto mt-12 md:mt-24 flex flex-col md:flex-row">
-      <div class="hidden md:block bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 rounded-lg p-5 mb-4 md:mb-0">
+    <main class="mt-[4rem] overflow-auto scrollbar-thin">
+      <div class="container mx-auto pb-10 pt-10 md:pt-16 flex flex-col md:flex-row">
+        <div class="hidden md:block bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 rounded-lg p-5 mb-4 md:mb-0">
+        </div>
+        <%= yield %>
       </div>
-      <%= yield %>
     </main>
     <script>
       function initializeUserMenu() {
