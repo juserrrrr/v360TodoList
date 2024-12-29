@@ -5,6 +5,6 @@ class UserMailer < ApplicationMailer
     @user = params[:user]
     @session_url = url_for(controller: 'sessions', action: 'new', only_path: false)
     @host_addres = Rails.application.config.action_mailer.default_url_options[:host]
-    mail(to: 'gabrielrpg13@gmail.com', subject: 'Welcome to the site!')
+    mail(to: @user.email_address, subject: 'Welcome to the site!')
   end
 end
