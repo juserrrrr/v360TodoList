@@ -13,8 +13,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        puts "Aqui o dominio #{Rails.application.credentials.dig(:smtp, :password)}"
-        UserMailer.with(user: @user).welcome_email.deliver_now
+        UserMailer.with(user: @user).welcome_email.deliver_later
         format.html { redirect_to new_session_path, notice: "User was successfully created. Please sign in." }
         format.json { render :show, status: :created, location: @user }
       else

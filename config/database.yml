@@ -3,6 +3,7 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
+
 development:
   <<: *default
   database: v360ToDoListDev
@@ -11,6 +12,7 @@ development:
   pool: 5
   host: localhost
   port: 5432
+
 
 test:
   <<: *default
@@ -25,6 +27,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
+    database: v360_to_do_list_production
     url: <%= ENV["DATABASE_URL"] %>
 
   cache:
