@@ -11,6 +11,7 @@
 - [x] ActionJob e SolidQueue configurados para backgroundjob
 - [x] Registro e autenticação de usuário para usar aplicação
 - [x] Lista e Tarefas pessais protegidas de acesso
+- [x] ORM utilziado para mapeamento do banco de dados Postegresql
 
 ## Instalação
 
