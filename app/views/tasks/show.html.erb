@@ -6,8 +6,9 @@
   <%= render @task %>
 
   <div class="w-full flex flex-col sm:flex-row gap-4">
+    <%= link_to "Add new task", new_list_task_path(@list), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium w-full sm:w-auto text-center" %>
     <%= link_to "Edit this task", edit_list_task_path(@list, @task), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium w-full sm:w-auto text-center" %>
     <%= link_to "Back to tasks", list_tasks_path(@list), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium w-full sm:w-auto text-center" %>
-    <%= button_to "Destroy this task", list_task_path(@list, @task), method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 font-medium w-full sm:w-auto" %>
+    <%= button_to "Destroy this task", list_task_path(@list, @task), method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium w-full sm:w-auto text-center"  %>
   </div>
 </div>
