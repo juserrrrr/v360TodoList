@@ -1,24 +1,29 @@
-# README
+# v360TodoList
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Funcionalidades
 
-Things you may want to cover:
+- [x] Criar uma nova tarefa
+- [x] Editar uma tarefa existente
+- [x] Excluir uma tarefa
+- [x] Marcar uma tarefa como concluída
+- [x] Sistema de envio emails
+- [x] Email enviado ao usuário criar uma conta
+- [x] ActionJob e SolidQueue configurados para backgroundjob
+- [x] Registro e autenticação de usuário para usar aplicação
+- [x] Lista e Tarefas pessais protegidas de acesso
 
-* Ruby version
+## Instalação
 
-* System dependencies
+// ...existing code...
 
-* Configuration
+## Uso
 
-* Database creation
+// ...existing code...
 
-* Database initialization
+## Contribuição
 
-* How to run the test suite
+// ...existing code...
 
-* Services (job queues, cache servers, search engines, etc.)
+## Licença
 
-* Deployment instructions
-
-* ...
+// ...existing code...
