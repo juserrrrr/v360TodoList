@@ -1,5 +1,4 @@
 class UserMailer < ApplicationMailer
-  default from: 'FocusTask <focustaskdev@gmail.com>'
 
   def welcome_email
     @user = params[:user]
