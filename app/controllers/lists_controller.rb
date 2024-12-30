@@ -76,7 +76,8 @@ class ListsController < ApplicationController
   private
     # Uso de callbacks para compartilhar código entre ações
     def set_list
-      @list = List.find(params[:id])
+      @list = List.find_by(id: params[:id])
+      redirect_to lists_path, notice: "List not found." if @list.nil?
     end
 
     # Verificar se o usuário atual é o criador da lista

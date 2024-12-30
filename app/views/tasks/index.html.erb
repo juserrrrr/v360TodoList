@@ -1,6 +1,10 @@
 <div class="w-full pl-8 pr-8 md:pl-4 md:pr-4">
   <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% if flash[:success] %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% else %>
+      <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
   <% end %>
 
   <% content_for :title, "Tasks" %>

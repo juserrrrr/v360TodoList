@@ -11,4 +11,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   get "up" => "rails/health#show", as: :rails_health_check
   root to: 'sessions#new'
+
+  # Redirect invalid pages to lists index
+  get '*path' => redirect('/lists')
 end

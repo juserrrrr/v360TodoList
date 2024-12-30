@@ -27,10 +27,10 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to [@list, @task], notice: "Task was successfully created." }
+        format.html { redirect_to [@list, @task], notice: "Task was successfully created.", flash: { success: true } }
         format.json { render :show, status: :created, location: [@list, @task] }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity, flash: { success: false} }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -41,10 +41,10 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to [@list, @task], notice: "Task was successfully updated." }
+        format.html { redirect_to [@list, @task], notice: "Task was successfully updated.", flash: { success: true } }
         format.json { render :show, status: :ok, location: [@list, @task] }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity, flash: { success: false } }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -55,7 +55,7 @@ class TasksController < ApplicationController
     @task.update(is_completed: !@task.is_completed)
   
     respond_to do |format|
-      format.html { redirect_to list_tasks_path(@list), notice: "Task completion status was successfully toggled." }
+      format.html { redirect_to list_tasks_path(@list), notice: "Task completion status was successfully toggled.", flash: { success: true } } 
       format.json { render :show, status: :ok, location: [@list, @task] }
     end
   end
@@ -65,19 +65,23 @@ class TasksController < ApplicationController
     @task.destroy!
 
     respond_to do |format|
-      format.html { redirect_to list_tasks_path(@list), status: :see_other, notice: "Task was successfully destroyed." }
+      format.html { redirect_to list_tasks_path(@list), status: :see_other, notice: "Task was successfully destroyed.", flash: { success: true } } 
       format.json { head :no_content }
     end
   end
 
+  # uso de callbacks para compartilhar informações com os métodos
   private
-    # uso de callbacks para compartilhar informações com os métodos
+    # Ações para encontrar a lista específica e a tarefa específica na lista
     def set_list
-      @list = List.find(params[:list_id])
+      @list = List.find_by(id: params[:list_id])
+      redirect_to lists_path, notice: "List not found." if @list.nil?
     end
 
     def set_task
-      @task = @list.tasks.find(params[:id])
+      # Encontrar a tarefa específica na lista
+      @task = @list.tasks.find_by(id: params[:id])
+      redirect_to list_tasks_path(@list), notice: "Task not found." if @task.nil?
     end
 
     # Verificar se o usuário atual é o criador da lista
