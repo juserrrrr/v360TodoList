@@ -14,6 +14,8 @@
 - [x] ORM utilizado para mapeamento do banco de dados PostgreSQL
 - [x] Implementação de paginação nas listas
 - [x] Implementação de cache nas listas para melhorar a performance
+- [x] Responsividade em todas as telas
+- [x] Redirecionamento em rotas inexistentes 
 
 ## Instalação
 
