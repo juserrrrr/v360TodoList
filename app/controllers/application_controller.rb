@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
+  # Incluir módulo de autenticação
   include Authentication
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
+  # Permitir apenas navegadores modernos que suportam imagens webp, push web, badges, import maps, aninhamento de CSS e CSS :has.
   allow_browser versions: :modern
 end

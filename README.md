@@ -10,21 +10,23 @@
 - [x] Email enviado ao usuário criar uma conta
 - [x] ActionJob e SolidQueue configurados para backgroundjob
 - [x] Registro e autenticação de usuário para usar aplicação
-- [x] Lista e Tarefas pessais protegidas de acesso
-- [x] ORM utilziado para mapeamento do banco de dados Postegresql
+- [x] Lista e Tarefas pessoais protegidas de acesso
+- [x] ORM utilizado para mapeamento do banco de dados PostgreSQL
+- [x] Implementação de paginação nas listas
+- [x] Implementação de cache nas listas para melhorar a performance
 
 ## Instalação
 
-// ...existing code...
+Em construção...
 
 ## Uso
 
-// ...existing code...
+Em construção...
 
 ## Contribuição
 
-// ...existing code...
+Em construção...
 
 ## Licença
 
-// ...existing code...
+Em construção...
