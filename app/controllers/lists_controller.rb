@@ -5,6 +5,7 @@ class ListsController < ApplicationController
   # GET /lists or /lists.json
   def index
     @lists = current_user.lists.page(params[:page]).per(10) # Exibir apenas as listas do usuário logado com paginação de 10 por página
+    fresh_when(@lists) 
   end
 
   # GET /lists/1 or /lists/1.json
